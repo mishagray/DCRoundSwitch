@@ -23,6 +23,10 @@
 @property (nonatomic, copy) NSString *onText;			// default: 'ON' - automatically localized
 @property (nonatomic, copy) NSString *offText;			// default: 'OFF' - automatically localized
 
+@property (nonatomic, retain) DCRoundSwitchOutlineLayer *outlineLayer;
+@property (nonatomic, retain) DCRoundSwitchToggleLayer *toggleLayer;
+@property (nonatomic, retain) DCRoundSwitchKnobLayer *knobLayer;
+
 + (Class)knobLayerClass;
 + (Class)outlineLayerClass;
 + (Class)toggleLayerClass;
