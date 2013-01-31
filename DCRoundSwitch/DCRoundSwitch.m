@@ -91,8 +91,17 @@
     return [DCRoundSwitchToggleLayer class];
 }
 
+- (void)_updateAccessibilityLabel
+{
+    NSString *positionString = (self.isOn) ? self.onText : self.offText;
+    NSString *accessibilityString = [NSString stringWithFormat:@"Switch button, %@", positionString];
+    self.accessibilityLabel = accessibilityString;
+}
+
 - (void)setup
 {
+    self.isAccessibilityElement = YES;
+    
 	// this way you can set the background color to black or something similar so it can be seen in IB
 	self.backgroundColor = [UIColor clearColor];
 
@@ -401,6 +410,9 @@
 
 		[CATransaction commit];
 	}];
+    
+    // Accessibility.
+    [self _updateAccessibilityLabel];
 }
 
 - (void)setOnTintColor:(UIColor *)anOnTintColor
@@ -448,6 +460,9 @@
 		onText = [newOnText copy];
 		self.toggleLayer.onString = onText;
 		[self.toggleLayer setNeedsDisplay];
+        
+        // Accessibility.
+        [self _updateAccessibilityLabel];
 	}
 }
 
@@ -459,6 +474,9 @@
 		offText = [newOffText copy];
 		self.toggleLayer.offString = offText;
 		[self.toggleLayer setNeedsDisplay];
+        
+        // Accessibility.
+        [self _updateAccessibilityLabel];
 	}
 }
 
